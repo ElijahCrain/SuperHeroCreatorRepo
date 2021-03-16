@@ -12,6 +12,7 @@ namespace SuperHeroCreator.Data
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 			: base(options)
 		{
+
 		}
 		public DbSet<Hero> Heros { get; set; } 
 	}

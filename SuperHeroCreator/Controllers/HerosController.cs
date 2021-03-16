@@ -4,14 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SuperHeroCreator.Data;
+using SuperHeroCreator.Models;
 
 namespace SuperHeroCreator.Controllers
 {
 	public class HerosController : Controller
 	{
+		private ApplicationDbContext _context;
+		public HerosController(ApplicationDbContext context)
+		{
+			_context = context;
+		}
+
 		// GET: HerosController
 		public ActionResult Index()
 		{
+			//add queries
 			return View();
 		}
 
@@ -30,7 +39,7 @@ namespace SuperHeroCreator.Controllers
 		// POST: HerosController/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
+		public ActionResult Create(Hero hero)
 		{
 			try
 			{
@@ -51,7 +60,7 @@ namespace SuperHeroCreator.Controllers
 		// POST: HerosController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
+		public ActionResult Edit(int id, Hero hero)
 		{
 			try
 			{
