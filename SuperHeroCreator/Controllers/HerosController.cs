@@ -21,7 +21,8 @@ namespace SuperHeroCreator.Controllers
 		public ActionResult Index()
 		{
 			//add queries
-			return View();
+			var hero = _context.Heros;
+			return View(hero);
 		}
 
 		// GET: HerosController/Details/5
@@ -43,7 +44,11 @@ namespace SuperHeroCreator.Controllers
 		{
 			try
 			{
-				return RedirectToAction(nameof(Index));
+				//adds hero to db
+				_context.Heros.Add(hero);
+				_context.SaveChanges();
+				return RedirectToAction("Index");
+				
 			}
 			catch
 			{
