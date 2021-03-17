@@ -83,8 +83,8 @@ namespace SuperHeroCreator.Controllers
 		// GET: HerosController/Delete/5
 		public ActionResult Delete(int id)
 		{
-
-			return View();
+			var deleteid = _context.Heros.Find(id);
+			return View(deleteid);
 		}
 
 		// POST: HerosController/Delete/5
@@ -94,7 +94,8 @@ namespace SuperHeroCreator.Controllers
 		{
 			try
 			{
-
+				_context.Heros.Remove(hero);
+				_context.SaveChanges();
 				return RedirectToAction(nameof(Index));
 			}
 			catch
